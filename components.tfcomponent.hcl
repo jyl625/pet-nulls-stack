@@ -1,14 +1,6 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
-variable "prefix" {
-  type = string
-}
-
-variable "instances" {
-  type = number
-}
-
 required_providers {
   random = {
     source  = "hashicorp/random"
