@@ -14,17 +14,11 @@ variable "prefix" {
   type = string
 }
 
-variable "instances" {
-  type = number
-}
-
 resource "random_pet" "this" {
-  count = var.instances
-  
   prefix = var.prefix
   length = 3
 }
 
 output "name" {
-  value = [for n in random_pet.this: n.id]
+  value = random_pet.this.id
 }

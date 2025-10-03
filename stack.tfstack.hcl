@@ -29,7 +29,6 @@ component "pet" {
 
   inputs = {
     prefix = var.prefix
-    instances = var.instances
   }
 
   providers = {
