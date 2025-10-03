@@ -4,14 +4,14 @@
 deployment "simple" {
   inputs = {
     prefix           = "simple"
-    instances        = 2
+    instances        = 3
   }
 }
 
 deployment "complex" {
   inputs = {
     prefix           = "complex"
-    instances        = 4
+    instances        = 3
   }
 }
 

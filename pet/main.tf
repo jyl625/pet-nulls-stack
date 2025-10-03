@@ -26,5 +26,5 @@ resource "random_pet" "this" {
 }
 
 output "name" {
-  value = random_pet.this.id
+  value = [for n in random_pet.this: n.id]
 }
