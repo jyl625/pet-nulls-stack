@@ -17,19 +17,6 @@ variable "prefix" {
 resource "random_pet" "this" {
   prefix = var.prefix
   length = 3
-  count = 0
-  lifecycle {
-    action_trigger {
-      events  = [after_create]
-      actions = [action.bufo_print.yay]
-    }
-  }
-}
-
-action "bufo_print" "yay" {
-  config {
-    name = "bufo-the-builder"
-  }
 }
 
 output "name" {
