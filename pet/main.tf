@@ -21,8 +21,14 @@ resource "random_pet" "this" {
   lifecycle {
     action_trigger {
       events  = [after_create]
-      actions = [action.bufo_print.success]
+      actions = [action.bufo_print.yay]
     }
+  }
+}
+
+action "bufo_print" "yay" {
+  config {
+    name = "bufo-the-builder"
   }
 }
 
