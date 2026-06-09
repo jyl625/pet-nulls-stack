@@ -13,10 +13,10 @@ terraform {
       version = "2.1.0"
     }
     
-    local = {
-      source  = "hashicorp/local"
-      version = "2.9.0"
-    }
+    # local = {
+    #   source  = "hashicorp/local"
+    #   version = "2.9.0"
+    # }
   }
 }
 
@@ -43,13 +43,13 @@ resource "null_resource" "resource_with_action_and_count" {
   }
 }
 
-resource "null_resource" "resource_with_action" {
-  lifecycle {
-    action_trigger {
-      events  = [after_create]
-      actions = [action.local_command.echo_hello[0]]
-    }
-  }
+resource "null_resource" "resource_without_action" {
+  # lifecycle {
+  #   action_trigger {
+  #     events  = [after_create]
+  #     actions = [action.local_command.echo_hello[0]]
+  #   }
+  # }
 }
 
 locals {
@@ -62,14 +62,14 @@ action "bufo_print" "success" {
   }
 }
 
-action "local_command" "echo_hello" {
-  config {
-    command   = "echo"
-    arguments = ["Hello World"]
-  }
+# action "local_command" "echo_hello" {
+#   config {
+#     command   = "echo"
+#     arguments = ["Hello World"]
+#   }
   
-  count = var.my_count
-}
+#   count = var.my_count
+# }
 
 output "ids" {
   value = [for n in null_resource.this : n.id]

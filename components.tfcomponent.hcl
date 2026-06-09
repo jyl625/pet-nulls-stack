@@ -25,16 +25,16 @@ required_providers {
     version = "~> 2.1.0"
   }
 
-  local = {
-    source  = "hashicorp/local"
-    version = "~> 2.9.0"
-  }
+  # local = {
+  #   source  = "hashicorp/local"
+  #   version = "~> 2.9.0"
+  # }
 }
 
 provider "random" "this" {}
 provider "null" "this" {}
 provider "bufo" "this" {}
-provider "local" "this" {}
+# provider "local" "this" {}
 
 component "pet" {
   source = "./pet"
@@ -59,6 +59,6 @@ component "nulls" {
   providers = {
     null = provider.null.this
     bufo = provider.bufo.this
-    local = provider.local.this
+    # local = provider.local.this
   }
 }
