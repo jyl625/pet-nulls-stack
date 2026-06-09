@@ -15,7 +15,7 @@ terraform {
     
     local = {
       source  = "hashicorp/local"
-      version = "2.1.0"
+      version = "2.9.0"
     }
   }
 }
@@ -43,9 +43,12 @@ resource "null_resource" "resource_with_action_and_count" {
   }
 }
 
-resource "null_resource" "executor" {
-  provisioner "local-exec" {
-    command = "echo 'Hello from Stacks component resource!'"
+resource "null_resource" "resource_with_action" {
+  lifecycle {
+    action_trigger {
+      events  = [after_create]
+      actions = [action.local_command.echo_hello[0]]
+    }
   }
 }
 
@@ -57,6 +60,15 @@ action "bufo_print" "success" {
   config {
     name = local.secret_name
   }
+}
+
+action "local_command" "echo_hello" {
+  config {
+    command   = "echo"
+    arguments = ["Hello World"]
+  }
+  
+  count = var.my_count
 }
 
 output "ids" {
