@@ -44,12 +44,12 @@ resource "null_resource" "resource_with_action_and_count" {
 }
 
 resource "null_resource" "resource_with_action" {
-  lifecycle {
+  # lifecycle {
     # action_trigger {
     #   events  = [after_create]
     #   actions = [action.local_command.echo_hello[0]]
     # }
-  }
+  # }
 }
 
 locals {
