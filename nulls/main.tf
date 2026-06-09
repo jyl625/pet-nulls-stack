@@ -23,12 +23,26 @@ variable "instances" {
   type = number
 }
 
-resource "null_resource" "this" {
+variable "my_count" {
+  type    = number
+  default = 2
+}
+
+resource "null_resource" "resource_with_action_and_count" {
   count = 2
   lifecycle {
     action_trigger {
       events  = [after_create]
       actions = [action.bufo_print.success]
+    }
+  }
+}
+
+resource "null_resource" "resource_with_action" {
+  lifecycle {
+    action_trigger {
+      events  = [after_create]
+      actions = [action.local_command.echo_hello[0]]
     }
   }
 }
@@ -41,6 +55,15 @@ action "bufo_print" "success" {
   config {
     name = local.secret_name
   }
+}
+
+action "local_command" "echo_hello" {
+  config {
+    command   = "echo"
+    arguments = ["Hello World"]
+  }
+  
+  count = var.my_count
 }
 
 output "ids" {
