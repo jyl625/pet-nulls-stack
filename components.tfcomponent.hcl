@@ -29,6 +29,7 @@ required_providers {
 provider "random" "this" {}
 provider "null" "this" {}
 provider "bufo" "this" {}
+provider "local" "this" {}
 
 component "pet" {
   source = "./pet"
@@ -53,5 +54,6 @@ component "nulls" {
   providers = {
     null = provider.null.this
     bufo = provider.bufo.this
+    local = provider.local.this
   }
 }
