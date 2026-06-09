@@ -24,6 +24,11 @@ required_providers {
     source  = "austinvalle/bufo"
     version = "~> 2.1.0"
   }
+
+  local = {
+    source  = "hashicorp/local"
+    version = "~> 2.1.0"
+  }
 }
 
 provider "random" "this" {}
