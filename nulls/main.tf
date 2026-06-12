@@ -33,12 +33,12 @@ variable "my_count" {
   default = 2
 }
 
-resource "null_resource" "resource_with_action_and_count" {
+resource "null_resource" "resource_with_action_and_count_1" {
   count = 2
   lifecycle {
     action_trigger {
       events  = [after_create]
-      actions = [action.bufo_print.success]
+      actions = [action.bufo_print.stacks_action]
     }
   }
 }
@@ -56,7 +56,7 @@ locals {
   secret_name = sensitive("bufo-the-builder")
 }
 
-action "bufo_print" "success" {
+action "bufo_print" "stacks_action" {
   config {
     name = local.secret_name
   }
@@ -72,5 +72,5 @@ action "bufo_print" "success" {
 # }
 
 output "ids" {
-  value = [for n in null_resource.resource_with_action_and_count : n.id]
+  value = [for n in null_resource.resource_with_action_and_count_1 : n.id]
 }
